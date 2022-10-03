@@ -20,5 +20,16 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Service\PdoFouDeSerie: 
+        alias: service_pdo 
+
+    service_pdo: 
+        class: App\Service\PdoFouDeSerie 
+        arguments: 
+            $serveur: 'mysql:host=127.0.0.1:3307' 
+            $bdd: 'dbname=rdugas_foudeseries' 
+            $user: 'root' 
+            $mdp: ''
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
