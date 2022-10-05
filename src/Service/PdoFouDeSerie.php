@@ -20,6 +20,13 @@ class PdoFouDeSerie
 		return $lesSeries;
     }
 
+    public function getLaSerie($id) {
+        $req = PdoFouDeSerie::$monPdo->prepare('SELECT id, UPPER(titre) as titre,resume,duree,DATE_FORMAT(premiereDiffusion,"%d/%m/%Y") as premiereDiffusion, image FROM serie WHERE id = '.$id);
+		$req->execute();
+		$laSerie = $req->fetch();
+		return $laSerie;
+    }
+
     public function getNbSeries() {
         $req = PdoFouDeSerie::$monPdo->prepare('SELECT COUNT(id) as nombre FROM serie');
 		$req->execute();

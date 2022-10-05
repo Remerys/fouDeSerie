@@ -27,4 +27,23 @@ class ApiController extends AbstractController
         }
         return new JsonResponse($tableau);
     }
+
+    #[Route('/api/series/{id}', name: 'app_api')]
+    public function getLaSerie(PdoFouDeSerie $pdoFouDeSerie, $id): Response
+    {
+        $laSerie = $pdoFouDeSerie->getLaSerie($id);
+        if ($laSerie !== false) {
+            $tableau = [
+                'id'=>$laSerie['id'],
+                'titre'=>$laSerie['titre'],
+                'resume'=>$laSerie['resume'],
+                'duree'=>$laSerie['duree'],
+                'premiereDiffusion'=>$laSerie['premiereDiffusion'],
+                'image'=>$laSerie['image']
+            ];
+            return new JsonResponse($tableau);
+        } else {
+            return new JsonResponse(['message' => 'Serie not found'], Response::HTTP_NOT_FOUND);
+        }
+    }
 }
