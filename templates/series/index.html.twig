@@ -9,13 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Retrouvez les {{nombreSeries.nombre}} séries de fou de séries</h1>
+    <h1>Retrouvez les {{nombreSeries}} séries de fou de séries</h1>
     {% for serie in lesSeries %}
         <img src={{serie.image}} style="height:400px"></img>
         <li>Titre : {{ serie.titre }}</li>
         <li>Synopsis : {{ serie.resume }}</li>
-        <li>Durée : {{ serie.duree }}</li>
-        <li>Première diffusion : {{ serie.premiereDiffusion }}</li>
+        {# <li>Durée : {{ serie.duree }}</li> #}
+        <li>Première diffusion : {{ serie.premiereDiffusion | date("m/d/Y")}}</li>
         <br>
     {% endfor %}
 </div>

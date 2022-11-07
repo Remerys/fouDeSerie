@@ -12,6 +12,15 @@
     <h1>Les news de fou de série</h1>
     {# the image lives at "public/images/logo.png" #} 
     <img src="{{asset('images/news.jpg')}}" alt="tv"/>
+
+    {% for serie in lesSeries %}
+        <img src={{serie.image}} style="height:400px"></img>
+        <li>Titre : {{ serie.titre }}</li>
+        <li>Synopsis : {{ serie.resume }}</li>
+        {# <li>Durée : {{ serie.duree }}</li> #}
+        <li>Première diffusion : {{ serie.premiereDiffusion | date("m/d/Y")}}</li>
+        <br>
+    {% endfor %}
 </div>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">

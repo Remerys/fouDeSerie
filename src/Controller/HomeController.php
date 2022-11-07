@@ -10,6 +10,7 @@ use App\Service\PdoFouDeSerie;
 use App\Entity\Serie;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
@@ -20,9 +21,22 @@ class HomeController extends AbstractController
     }
 
     #[Route('/news', name: 'app_news')]
-    public function news(): Response
+    public function news(ManagerRegistry $doctrine): Response
     {
-        return $this->render('news/index.html.twig');
+        $repository = $doctrine->getRepository(Serie::class);
+        $query=$this->createQueryBuilder('s') 
+            ->andWhere('s.exampleField = :val') 
+            ->setParameter('val', $value) 
+            ->orderBy('s.id', 'ASC') 
+            ->setMaxResults(10) 
+            ->getQuery();
+
+        $lesSeries = $repository->findBy(
+            [],
+            ['titre' => 'ASC']
+        );
+
+        return $this->render('news/index.html.twig', ['lesSeries'=> $lesSeries]);
     }
 
     #[Route('/testEntity', name: 'app_testEntity')]
