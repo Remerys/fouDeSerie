@@ -21,8 +21,8 @@ class Serie
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $resume = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $duree = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $duree = null;
 
     #[ORM\Column(name:'premiereDiffusion', type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $premiereDiffusion = null;
@@ -59,12 +59,12 @@ class Serie
         return $this;
     }
 
-    public function getDuree(): ?\DateTimeInterface
+    public function getDuree(): ?string
     {
         return $this->duree;
     }
 
-    public function setDuree(?\DateTimeInterface $duree): self
+    public function setDuree(?string $duree): self
     {
         $this->duree = $duree;
 

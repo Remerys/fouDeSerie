@@ -11,10 +11,12 @@
 <div class="example-wrapper">
     <h1>Retrouvez les {{nombreSeries}} séries de fou de séries</h1>
     {% for serie in lesSeries %}
-        <img src={{serie.image}} style="height:400px"></img>
+        <a href="{{ path('app_seriesDetails', {'id': serie.id}) }}">
+            <img src={{serie.image}} style="height:400px"></img>
+        </a>
         <li>Titre : {{ serie.titre }}</li>
         <li>Synopsis : {{ serie.resume }}</li>
-        {# <li>Durée : {{ serie.duree }}</li> #}
+        <li>Durée : {{ serie.duree }}</li>
         <li>Première diffusion : {{ serie.premiereDiffusion | date("m/d/Y")}}</li>
         <br>
     {% endfor %}

@@ -15,9 +15,15 @@ class SerieController extends AbstractController
     #[Route('/series', name: 'app_series')]
     public function series(ManagerRegistry $doctrine) {
         $repository = $doctrine->getRepository(Serie::class);
+        // $lesSeries = $repository->findAll();
+        // $lesSeries = $repository->findBy(
+        //     [],
+        //     ['titre' => 'ASC']
+        // );
         $lesSeries = $repository->findBy(
             [],
-            ['titre' => 'ASC']
+            ['premiereDiffusion' => 'DESC'],
+            4
         );
         dump($lesSeries);
         $nombreSeries = count($lesSeries);
@@ -30,4 +36,12 @@ class SerieController extends AbstractController
     //     $nombreSeries = $pdoFouDeSerie->getNbSeries();
     //     return $this->render('series/index.html.twig', ['lesSeries'=> $lesSeries, 'nombreSeries' => $nombreSeries]);
     // }
+
+    #[Route('/series/{id}', name: 'app_seriesDetails')]
+    public function details(ManagerRegistry $doctrine, $id) {
+        $repository = $doctrine->getRepository(Serie::class);
+        $laSerie = $repository->find($id);
+
+        return $this->render('series/info.html.twig', ['serie' => $laSerie]);
+    }
 }

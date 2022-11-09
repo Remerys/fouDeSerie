@@ -24,16 +24,10 @@ class HomeController extends AbstractController
     public function news(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Serie::class);
-        $query=$this->createQueryBuilder('s') 
-            ->andWhere('s.exampleField = :val') 
-            ->setParameter('val', $value) 
-            ->orderBy('s.id', 'ASC') 
-            ->setMaxResults(10) 
-            ->getQuery();
-
         $lesSeries = $repository->findBy(
             [],
-            ['titre' => 'ASC']
+            ['titre' => 'DESC'],
+            4
         );
 
         return $this->render('news/index.html.twig', ['lesSeries'=> $lesSeries]);
@@ -45,7 +39,7 @@ class HomeController extends AbstractController
         $serie = new Serie();
         $serie->setTitre('truc');
         $serie->setResume('');
-        $serie->setDuree(new \DateTime('00:30:00'));
+        $serie->setDuree('00:30:00');
         $serie->setPremiereDiffusion(new \DateTime('01-09-2022'));
 
         $entityManager=$doctrine->getManager();
