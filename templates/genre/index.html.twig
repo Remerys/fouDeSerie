@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GenreController!{% endblock %}
+{% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Fou de test de genre</h1>
+        <img src={{serie}} style="height:400px"></img>
+        <li>Titre : {{serie}}</li>
+        <li>Synopsis : {{serie}}</li>
+        <li>Durée : {{serie}}</li>
+        <li>Première diffusion : {{serie}}</li>
+        <br>
+    {% for serie in laSerie.genres %}
+    <p class="card-text">{{}}</p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/rdugas/symfony/fouDeSerie/src/Controller/GenreController.php'|file_link(0) }}">src/Controller/GenreController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/rdugas/symfony/fouDeSerie/templates/genre/index.html.twig'|file_link(0) }}">templates/genre/index.html.twig</a></code></li>
-    </ul>
+    {% endfor %}
+    {# the image lives at "public/images/logo.png" #} 
 </div>
 {% endblock %}
