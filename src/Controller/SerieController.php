@@ -23,7 +23,7 @@ class SerieController extends AbstractController
         $lesSeries = $repository->findBy(
             [],
             ['premiereDiffusion' => 'DESC'],
-            4
+            // Modifie le nombre max de série affiché --> 4
         );
         dump($lesSeries);
         $nombreSeries = count($lesSeries);

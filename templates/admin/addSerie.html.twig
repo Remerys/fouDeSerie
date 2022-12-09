@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Formulaire</h1>
+    {{ form_start(form) }} 
+        {{ form_row(form.image) }} 
+        {{ form_row(form.titre) }} 
+        {{ form_row(form.resume) }} 
+        {{ form_row(form.duree) }} 
+        {{ form_row(form.premiereDiffusion) }} 
+        {{ form_row(form.genres) }}
+
+        <button>Sauvegarder</button>
+    {{ form_end(form) }} 
+
+</div>
+{% endblock %}
