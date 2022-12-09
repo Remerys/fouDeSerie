@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire des genres{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Formulaire des genres</h1>
+    {{ form_start(form) }} 
+        {{ form_row(form.libelle) }}
+
+        <button>Sauvegarder</button>
+    {{ form_end(form) }} 
+
+</div>
+{% endblock %}
