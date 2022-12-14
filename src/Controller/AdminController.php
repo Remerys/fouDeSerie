@@ -36,7 +36,7 @@ class AdminController extends AbstractController
         $repository = $doctrine->getRepository(Serie::class);
         $laSerie = $repository->find($id);
         if ($laSerie !== null) {
-            $updateForm=$this->createForm(SerieType::class, $laSerie); 
+            $updateForm=$this->createForm(SerieType::class, $laSerie, ['method' => 'PUT']); 
             $updateForm->handleRequest($request);
             if($updateForm->isSubmitted() && $updateForm->isValid()) {
                 $entityManager=$doctrine->getManager();

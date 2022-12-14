@@ -36,7 +36,7 @@ class AdminGenreController extends AbstractController
         $repository = $doctrine->getRepository(Genre::class);
         $leGenre = $repository->find($id);
         if ($leGenre !== null) {
-            $updateForm=$this->createForm(GenreType::class, $leGenre); 
+            $updateForm=$this->createForm(GenreType::class, $leGenre, ['method' => 'PUT']); 
             $updateForm->handleRequest($request);
             if($updateForm->isSubmitted() && $updateForm->isValid()) {
                 $entityManager=$doctrine->getManager();
