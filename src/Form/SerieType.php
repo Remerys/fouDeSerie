@@ -20,18 +20,18 @@ class SerieType extends AbstractType
             ->add('duree')
             ->add('premiereDiffusion')
             ->add('image')
-            ->add( 
-                'genres', 
-                EntityType::class, 
-                array( 
-                'class' => Genre::class, 
+            ->add(
+                'genres',
+                EntityType::class,
+                array(
+                'class' => Genre::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.libelle', 'ASC');
                 },
                 'choice_label' => 'libelle',
-                'expanded' => true,
                 'multiple' => true,
+                'expanded' => false
                 )
             );
     }

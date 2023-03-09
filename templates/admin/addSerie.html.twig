@@ -2,19 +2,29 @@
 
 {% block title %}Formulaire des séries{% endblock %}
 
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    <script src="{{asset('js/validForm.js')}}"></script>
+    <script src="{{asset('js/select.js')}}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 <div class="example-wrapper">
     <h1>Formulaire des séries</h1>
-    {{ form_start(form) }} 
-        {{ form_row(form.image) }} 
-        {{ form_row(form.titre) }} 
-        {{ form_row(form.resume) }} 
-        {{ form_row(form.duree) }} 
-        {{ form_row(form.premiereDiffusion) }} 
+    {{ form_start(form) }}
+        {{ form_row(form.image) }}
+        <span class="text-danger" id="error"></span>
+        {{ form_row(form.titre) }}
+        {{ form_row(form.resume) }}
+        {{ form_row(form.duree) }}
+        {{ form_row(form.premiereDiffusion) }}
         {{ form_row(form.genres) }}
 
-        <button>Sauvegarder</button>
-    {{ form_end(form) }} 
-
+        <button id="btnSave">Sauvegarder</button>
+    {{ form_end(form) }}
 </div>
 {% endblock %}

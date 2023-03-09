@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Retrouvez les {{nombreSeries}} séries de fou de séries</h1>
+    {% for serie in lesSeries %}
+        <a href="{{ path('app_seriesDetails', {'id': serie.id}) }}">
+            <img src={{serie.image}} style="height:400px"></img>
+        </a>
+        <li><a href="{{ path('app_admin_deleteSerie', {'id':serie.id, 'token': csrf_token('deleteSerie')}) }}">Suppresion</a></li>
+        <li>ID : {{ serie.id }}</li>
+        <li>Titre : {{ serie.titre }}</li>
+        <li>Synopsis : {{ serie.resume }}</li>
+        <li>Durée : {{ serie.duree }}</li>
+        <li>Première diffusion : {{ serie.premiereDiffusion | date("m/d/Y")}}</li>
+        <br>
+        <form method="POST" action="{{ path('app_admin_deleteSerie', {'id':serie.id}) }}">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="token" value="{{ csrf_token('deleteSerie') }}">
+            <button>Supprimer</button>
+        </form>
+    {% endfor %}
+</div>
+{% endblock %}
