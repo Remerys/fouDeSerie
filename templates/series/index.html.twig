@@ -26,7 +26,12 @@
         <li>Synopsis : {{ serie.resume }}</li>
         <li>Durée : {{ serie.duree }}</li>
         <li>Première diffusion : {{ serie.premiereDiffusion | date("m/d/Y")}}</li>
-        <a href="{{ path('app_seriesLikes', {'id': serie.id}) }}" id="likes"><span class="material-symbols-outlined">thumb_up</span>{{ serie.likes }}</a>
+        <span class="truc">
+        <a class="likes" href="{{ path('app_seriesLikes', {'id': serie.id}) }}">
+            <span class="material-symbols-outlined">thumb_up</span>
+            <span class="js-nb-like">{{ serie.likes }}</span>
+        </a>
+        </span>
         <br>
     {% endfor %}
 </div>

@@ -38,7 +38,6 @@ class AdminController extends AbstractController
             ['premiereDiffusion' => 'DESC'],
             // Modifie le nombre max de série affiché --> 4
         );
-        dump($lesSeries);
         $nombreSeries = count($lesSeries);
 
         return $this->render('admin/deleteSerie.html.twig', ['lesSeries'=> $lesSeries, 'nombreSeries' => $nombreSeries]);

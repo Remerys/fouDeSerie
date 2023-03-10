@@ -28,7 +28,6 @@ class SerieController extends AbstractController
             ['premiereDiffusion' => 'DESC'],
             // Modifie le nombre max de série affiché --> 4
         );
-        dump($lesSeries);
         $nombreSeries = count($lesSeries);
 
         return $this->render('series/index.html.twig', ['lesSeries'=> $lesSeries, 'nombreSeries' => $nombreSeries]);
