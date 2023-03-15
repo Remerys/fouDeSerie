@@ -1,7 +1,7 @@
 var lesLiens = document.getElementsByClassName('likes')
 
 for (var i = 0; i < lesLiens.length; i++) {
-    addEventListener('click', majLike)
+    lesLiens[i].addEventListener('click', majLike)
 }
 
 function majLike(event) {

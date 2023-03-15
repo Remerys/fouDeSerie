@@ -2,7 +2,7 @@
 var lesLiens = document.getElementsByClassName('likes')
 /* on parcourt les éléments que l'on vient de récupérer et pour chacun d'entre eux on écoute l'événement click et on appelle la fonction majLike lorsque l'événement se produit */
 for (var i = 0; i < lesLiens.length; i++) {
-    addEventListener('click', majLike)
+    lesLiens[i].addEventListener('click', majLike)
 }
 
 function majLike(event) {
