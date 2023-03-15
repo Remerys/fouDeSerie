@@ -43,6 +43,10 @@ class SerieController extends AbstractController
     public function details(ManagerRegistry $doctrine, $id) {
         $repository = $doctrine->getRepository(Serie::class);
         $laSerie = $repository->find($id);
+        if (!$laSerie) {
+            dump('oe');
+            throw $this->createNotFoundException('La série n\'existe pas');
+        }
 
         return $this->render('series/info.html.twig', ['serie' => $laSerie]);
     }
