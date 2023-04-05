@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SerieController extends AbstractController
 {
@@ -44,7 +45,6 @@ class SerieController extends AbstractController
         $repository = $doctrine->getRepository(Serie::class);
         $laSerie = $repository->find($id);
         if (!$laSerie) {
-            dump('oe');
             throw $this->createNotFoundException('La série n\'existe pas');
         }
 
@@ -56,7 +56,10 @@ class SerieController extends AbstractController
         $repository = $doctrine->getRepository(Serie::class);
         $laSerie = $repository->find($id);
 
-        if ($laSerie !== null) {
+        try {
+            if (!$laSerie) {
+                throw $this->createNotFoundException("La série n'existe pas");
+            }
             $likes = $laSerie->getLikes(); // Récupère le nombre de like avant
             $laSerie->setLikes($likes + 1); // Ajoute 1 like
             $entityManager->persist($laSerie); // Changement dans la BDD
@@ -64,8 +67,8 @@ class SerieController extends AbstractController
 
             $likes = $laSerie->getLikes(); // Récupère le nombre de like après
             return new JsonResponse(['likes' => $likes]);
-        } else {
-            return new JsonResponse(['message' => 'Hackathon not found'], Response::HTTP_NOT_FOUND);
+        } catch (NotFoundHttpException $th) {
+            return new JsonResponse($th->getMessage() . ' code de statut : ' . $th->getStatusCode(), Response::HTTP_NOT_FOUND);
         }
     }
 }

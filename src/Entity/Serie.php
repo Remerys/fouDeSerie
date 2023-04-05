@@ -143,4 +143,11 @@ class Serie
 
         return $this;
     }
+
+    public function isNewSerie()
+    {
+        $today = new \DateTime();
+        $interval = $today->diff($this->getPremiereDiffusion());
+        return $interval->y < 1;
+    }
 }
