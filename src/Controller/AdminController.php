@@ -21,6 +21,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $entityManager=$doctrine->getManager();
+            $serie->setLikes(0);
             $entityManager->persist($serie);
             $entityManager->flush();
 

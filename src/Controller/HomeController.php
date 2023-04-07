@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    
+
     public function index(): Response
     {
         return $this->render('home/index.html.twig');
@@ -48,5 +48,5 @@ class HomeController extends AbstractController
 
         return $this->render('home/testEntity.html.twig', ['lesSeries' => $serie]);
     }
-    
+
 }
